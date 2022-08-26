@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add some user information HTML Table Row</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            
+            .container{overflow: hidden}
+            .tab{float: left;}
+            .tab-2{margin-left: 50px}
+            .tab-2 input{display: block;margin-bottom: 10px}
+            tr{transition:all .25s ease-in-out}
+            tr:hover{background-color:#EEE;cursor: pointer}
+            
+        </style>
+        
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="tab tab-1">
+                <table id="table" border="4">
+                    <tr>
+                        <th>Name</th>                       
+                        <th>ID</th>
+						<th>AGE</th>
+						
+						
+                    </tr>
+					
+				  <tr>
+                    <td style="width:13px; height: 13px;"></td>
+                    <td></td>
+                    <td></td>
+                   </tr>
+                   
+                </table>
+            </div>
+            <div class="tab tab-2">
+                 Name :<input type="text" name="fname" id="fname">
+               ID :<input type="number" name="id" id="id">
+                Age :<input type="number" name="age" id="age">
+                
+                <button onclick="addHtmlTableRow();">Add</button>
+                
+            </div>
+        </div>
+        
+        <script>
+            
+            var rIndex,
+                table = document.getElementById("table");
+            
+            // check the empty input
+            function checkEmptyInput()
+            {
+                var isEmpty = false,
+                    fname = document.getElementById("fname").value,
+                    id = document.getElementById("id").value,
+                    age = document.getElementById("age").value;
+            
+                if(name === ""){
+                    alert(" Name Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(id === ""){
+                    alert("id  Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(age === ""){
+                    alert("Age Connot Be Empty");
+                    isEmpty = true;
+                }
+                return isEmpty;
+            }
+            
+            // add Row
+            function addHtmlTableRow()
+            {
+                
+                if(!checkEmptyInput()){
+                var newRow = table.insertRow(table.length),
+                    cell1 = newRow.insertCell(0),
+                    cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2),
+                    fname = document.getElementById("fname").value,
+                    lname = document.getElementById("id").value,
+                    age = document.getElementById("age").value;
+            
+                cell1.innerHTML = fname;
+                cell2.innerHTML = lname;
+                cell3.innerHTML = age;
+				console.log(fname); 
+				console.log(lname); 
+				console.log(age); 
+				
+                
+                selectedRowToInput();
+            }
+            }
+            
+            // display selected row data into input text
+            function selectedRowToInput()
+            {
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                      // get the seected row index
+                      rIndex = this.rowIndex;
+                      document.getElementById("fname").value = this.cells[0].innerHTML;
+                      document.getElementById("id").value = this.cells[1].innerHTML;
+                      document.getElementById("age").value = this.cells[2].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+            
+           
+            
+           
+        </script>
+        
+    </body>
+</html>
